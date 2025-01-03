@@ -36,7 +36,7 @@ namespace Engine
         /// <summary>
         /// An object for generating Random numbers throughout the game
         /// </summary>
-        public static Random? Random
+        public static Random Random
         {
             get;
             private set;
@@ -103,6 +103,9 @@ namespace Engine
         {
             // store a static reference to the AssetManager
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            // store a static reference to the assetManager
+            AssetManager = new AssetManager(Content);
+
             // prepare an empty GameStateManager
             GameStateManager = new GameStateManager();
             // Set the game size to windowed by default
@@ -146,11 +149,30 @@ namespace Engine
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, spriteScaleMatrix);
             // Draw the game world itself
             GameStateManager.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
         }
+        /// <summary>
+        /// Converts a position in screen coordinates to a position in world coordinates.
+        /// </summary>
+        /// <param name="screenPosition"> A Vector2 position in screen coordinates</param>
+        /// <returns>
+        /// The coressponding position in world coordinates
+        /// </returns>
+        public Vector2 ScreenToWorld(Vector2 screenPosition)
+        {
+            Vector2 viewportTopLeft = new Vector2(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y);
+            float screenToWorldScale = gameWorldSize.X / (float)GraphicsDevice.Viewport.Width;
+            Vector2 screenToWorld = (screenPosition - viewportTopLeft) * screenToWorldScale;
+            return screenToWorld;
+        }
+
+        #endregion
+
+        #region Private Region
         /// <summary>
         /// Scales the window to the desired size, and calculates how the game world should be scaled to fit inside that window
         /// </summary>
-        void ApplyResolutionSettings(bool isFullScreen)
+        private void ApplyResolutionSettings(bool isFullScreen)
         {
             // Make the game full-screen or not
             graphics.IsFullScreen = isFullScreen;
@@ -172,6 +194,29 @@ namespace Engine
             GraphicsDevice.Viewport = CalculateViewport(screenSize);
             // Calculate how the graphics should be scaled, the game world fits inside the window
             spriteScaleMatrix = Matrix.CreateScale((float)GraphicsDevice.Viewport.Width / gameWorldSize.X, (float)GraphicsDevice.Viewport.Height / gameWorldSize.Y, 1);
+        }
+        /// <summary>
+        /// Calculates and returns the viewport to use, so the game world fits on the screen while preserving its asepct ratio.
+        /// </summary>
+        /// <param name="windowSize">The size of the screen on which the world should be drawn</param>
+        /// <returns>A viewport object that will show the game world as large as possible while preserving its aspect ratio</returns>
+        private Viewport CalculateViewport(Point windowSize)
+        {
+            // Create a viewport object
+            Viewport viewport = new Viewport();
+            // calculate the two aspect ratios
+            float gameAspectRatio = (float)gameWorldSize.X / gameWorldSize.Y;
+            float windowAspectRatio = (float)windowSize.X / windowSize.Y;
+            // if the window is relatively wide, use the full windows heights
+            if (windowAspectRatio > gameAspectRatio)
+            {
+                viewport.Width = (int)(windowSize.Y * gameAspectRatio);
+                viewport.Height = windowSize.Y;
+            }
+            // Calculate and store the top-left corner of the viewport
+            viewport.X = (windowSize.X - viewport.Width) / 2;
+            viewport.Y = (windowSize.Y - viewport.Height) / 2;
+            return viewport;
         }
         #endregion
     }
