@@ -6,7 +6,7 @@ namespace Engine
     /// <summary>
     /// A class that manages all the objects belonging to a single game state
     /// </summary>
-    internal class GameState : IGameLoopObject
+    public abstract class GameState : IGameLoopObject
     {
         #region Member Variables
         /// <summary>
@@ -41,6 +41,14 @@ namespace Engine
         public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             gameObjectList.Draw(gameTime, spriteBatch);
+        }
+        /// <summary>
+        /// Calls Update for all the objects in this GameState
+        /// </summary>
+        /// <param name="gameTime">An object containing information about the time that has passed</param>
+        public virtual void Update(GameTime gameTime)
+        {
+            gameObjectList.Update(gameTime);
         }
         /// <summary>
         /// Calls reset for all the objects in the GameState

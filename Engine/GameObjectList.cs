@@ -6,7 +6,7 @@ namespace Engine
     /// <summary>
     /// A non-visual game object that has a list of game objects as its children
     /// </summary>
-    internal class GameObjectList : GameObject
+    public class GameObjectList : GameObject
     {
         #region Member Variables
         /// <summary>

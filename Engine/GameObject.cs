@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Engine
 {
-    internal class GameObject : IGameLoopObject
+    public class GameObject : IGameLoopObject
     {
         #region Memeber Variables
         protected Vector2 localPosition;

@@ -10,7 +10,7 @@ namespace Engine
     /// * Drawing
     /// * Resetting
     /// </summary>
-    internal class IGameLoopObject
+    public interface IGameLoopObject
     {
         void HandleInput(InputHelper inputHelper);
         void Update(GameTime gametime);
