@@ -16,7 +16,7 @@ namespace Engine
         /// <summary>
         /// The order at which this object should be drawn. A value from 0 to 1 larger values are drawn on top
         /// </summary>
-        protected float drawOrder;
+        protected float layerDepth;
         #endregion
         #region Properties
         /// <summary>
@@ -77,14 +77,14 @@ namespace Engine
         /// Creates a new SpriteGameObject with a given sprite name
         /// </summary>
         /// <param name="spriteName">The name of the sprite to load</param>
-        /// <param name="drawOrder">The order in which the object should be drawn.</param>
+        /// <param name="layerDepth">The order in which the object should be drawn.</param>
         /// <param name="sheetIndex">The sheet index of the sprite to use</param>
-        public SpriteGameObject(string spriteName, float drawOrder, int sheetIndex = 0)
+        public SpriteGameObject(string spriteName, float layerDepth, int sheetIndex = 0)
         {
-            this.drawOrder = drawOrder;
+            this.layerDepth = layerDepth;
             if (spriteName != null)
             {
-                sprite = new SpriteSheet(spriteName, drawOrder, sheetIndex);
+                sprite = new SpriteSheet(spriteName, layerDepth, sheetIndex);
             }
             Origin = Vector2.Zero;
         }
