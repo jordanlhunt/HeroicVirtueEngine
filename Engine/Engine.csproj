@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Animation\" />
     <Folder Include="Levels\" />
     <Folder Include="UI\" />
   </ItemGroup>

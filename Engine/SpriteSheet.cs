@@ -15,9 +15,21 @@ namespace Engine
         bool[,] pixelTranparency;
         #endregion
         #region Constructor
-        public SpriteSheet(string spriteName, float layerDepth, int sheetIndex)
+        public SpriteSheet(string spriteName, float layerDepth, int sheetIndex = 0)
         {
-            SheetIndex = sheetIndex;
+            this.layerDepth = layerDepth;
+
+            // retrieve the sprite
+            sprite = ExtendedGame.AssetManager.LoadSprite(spriteName);
+            Color[] colorData = new Color[sprite.Width * sprite.Height];
+            sprite.GetData(colorData);
+            pixelTranparency = new bool[sprite.Width, sprite.Height];
+            for (int i = 0; i < colorData.Length; i++)
+            {
+                pixelTranparency[i % sprite.Width, i / sprite.Width] = colorData[i].A == 0;
+            }
+            sheetColumns = 1;
+            sheetRows = 1;
         }
         #endregion
         #region Properties
