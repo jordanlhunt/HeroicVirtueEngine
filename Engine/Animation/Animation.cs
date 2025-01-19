@@ -50,7 +50,7 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public Animation(string assetname, float layerDepth, bool looping, float timePerFrame) : base(assetname, layerDepth, 0)
+        public Animation(string assetname, float layerDepth, bool looping, float timePerFrame) : base(assetname, layerDepth)
         {
             IsLooping = looping;
             TimePerFrame = timePerFrame;

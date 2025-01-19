@@ -1,4 +1,6 @@
-﻿namespace Engine.Animation
+﻿using Microsoft.Xna.Framework;
+
+namespace Engine
 {
     public class AnimationBook : SpriteSheet
     {
@@ -46,16 +48,37 @@
         #endregion
 
         #region Constructor
-        public Animation(string assetName, float layerDepth, bool isLooping, float timePerFrame) : base(assetName, layerDepth)
+        public AnimationBook(string assetName, float layerDepth, bool isLooping, float timePerFrame) : base(assetName, layerDepth)
         {
             IsLooping = isLooping;
-            TimePerFrame = timePerFrame;
             TimePerFrame = timePerFrame;
         }
 
         #endregion
 
         #region Public Methods
+        public void Play()
+        {
+            SheetIndex = 0;
+            timeInSeconds = 0.0f;
+        }
+        public void Update(GameTime gameTime)
+        {
+            timeInSeconds += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            // if enough time has passed, go to the next frame
+            while (timeInSeconds > TimePerFrame)
+            {
+                timeInSeconds -= TimePerFrame;
+                if (IsLooping == true)
+                {
+                    SheetIndex = (SheetIndex + 1) % NumberOfSheetElements;
+                }
+                else
+                {
+                    SheetIndex = Math.Min(SheetIndex + 1, NumberOfSheetElements - 1);
+                }
+            }
+        }
         #endregion
 
     }
