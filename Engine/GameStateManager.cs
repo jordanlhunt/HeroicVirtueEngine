@@ -23,9 +23,25 @@ namespace Engine
         }
         #endregion
         #region Public Methods
+        /// <summary>
+        /// Gets the game state with the given name, if it exists.
+        /// </summary>
+        /// <param name="name">The name of the game state to find.</param>
+        /// <returns>The GameState with that name, or null if it could not be found.</returns>
         public void AddGameState(string stateName, GameState gameState)
         {
             gameStates[stateName] = gameState;
+        }
+        /// <summary>
+        /// Switches to a different active game state.
+        /// </summary>
+        /// <param name="name">The name of the game state to set as the new active one.</param>
+        public void SwitchGameState(string name)
+        {
+            if (gameStates.ContainsKey(name))
+            {
+                currentlyActiveGameState = gameStates[name];
+            }
         }
         /// <summary>
         /// Calls the HandleInput function for all the GameObjects in the currentlyActiveGameState
