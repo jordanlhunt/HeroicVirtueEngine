@@ -3,7 +3,7 @@
     /// <summary>
     /// A class that can represent a UI button in the game
     /// </summary>
-    internal class Button : SpriteGameObject
+    public class Button : SpriteGameObject
     {
         #region Properties
         /// <summary>
