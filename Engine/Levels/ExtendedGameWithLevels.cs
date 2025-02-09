@@ -13,10 +13,8 @@
         const string LEVEL_STATUS_LOCKED = "locked";
         const string LEVEL_STATUS_UNLOCKED = "unlocked";
         const string LEVEL_STATUS_SOLVED = "solved";
-
         static List<LevelStatus> progressList;
         #endregion
-
         #region Properties
         /// <summary>
         /// The total number of levels in the game
@@ -29,7 +27,6 @@
             }
         }
         #endregion
-
         #region Public Methods
         /// <summary>
         /// Loads the player's level progress from a text file.
@@ -60,7 +57,7 @@
             }
             streamReader.Close();
         }
-        #endregion
+
         /// <summary>
         /// Gets the <see cref="LevelStatus"/> of the level with the given index.
         /// </summary>
@@ -70,15 +67,7 @@
         {
             return progressList[levelIndex - 1];
         }
-        /// <summary>
-        /// Sets the <see cref="LevelStatus"/> of the given level to the given value.
-        /// </summary>
-        /// <param name="levelIndex">The index of the level to change.<param>
-        /// <param name="status">The new desired status of the level.</param>
-        static void SetLevelStatus(int levelIndex, LevelStatus status)
-        {
-            progressList[levelIndex - 1] = status;
-        }
+
 
         /// <summary>
         /// Marks a level as solved, then unlocks the next level if possible and saves the player's progess.
@@ -96,6 +85,25 @@
             // Store the new level status
             SaveProgress();
         }
+
+        /// <summary>
+        /// Send the player to the next level in the game if possible, if not it sends them back to the level selection screen
+        /// </summary>
+        /// <param name="levelIndex">The index of the current level</param>
+        public static void GoToNextLevel(int levelIndex)
+        {
+            // if this is the last level, go back to the level select menu
+            if (levelIndex == NumberOfLevels)
+            {
+                GameStateManager.SwitchGameState(STATENAME_LEVELSELECT);
+            }
+        }
+        public static IPlayingState GetPlayingState()
+        {
+            return ((IPlayingState)GameStateManager.GetGameState(STATENAME_PLAYING));
+        }
+        #endregion
+        #region Private Methods
         /// <summary>
         /// Saves the player's progress to a file
         /// </summary>
@@ -120,21 +128,16 @@
             }
             streamWriter.Close();
         }
+
         /// <summary>
-        /// Send the player to the next level in the game if possible, if not it sends them back to the level selection screen
+        /// Sets the <see cref="LevelStatus"/> of the given level to the given value.
         /// </summary>
-        /// <param name="levelIndex">The index of the current level</param>
-        public static void GoToNextLevel(int levelIndex)
+        /// <param name="levelIndex">The index of the level to change.<param>
+        /// <param name="status">The new desired status of the level.</param>
+        static void SetLevelStatus(int levelIndex, LevelStatus status)
         {
-            // if this is the last level, go back to the level select menu
-            if (levelIndex == NumberOfLevels)
-            {
-                GameStateManager.SwitchGameState(STATENAME_LEVELSELECT);
-            }
+            progressList[levelIndex - 1] = status;
         }
-        public static IPlayingState GetPlayingState()
-        {
-            return ((IPlayingState)GameStateManager.GetGameState(STATENAME_PLAYING));
-        }
+        #endregion
     }
 }
