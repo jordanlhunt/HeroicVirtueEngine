@@ -36,9 +36,6 @@ namespace Engine.UI
                 sprite.SheetIndex = (LevelIndex - 1) % sprite.NumberOfSheetElements;
             }
         }
-
-
-
         #endregion
         #region Constructor
         /// <summary>
