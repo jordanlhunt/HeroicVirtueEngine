@@ -9,6 +9,11 @@
         Dictionary<string, Animation> animations;
         #endregion
         #region Constructor 
+        public AnimatedGameObject(float depth) : base(null, depth)
+        {
+            animations = new Dictionary<string, Animation>();
+        }
+
         #endregion
         #region Public Methods
         public void LoadAnimation(string animationName, string animationId, bool isLooping, float frameTime)

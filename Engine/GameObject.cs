@@ -22,7 +22,7 @@ namespace Engine
         {
             get
             {
-                return LocalPosition;
+                return localPosition;
             }
             set
             {

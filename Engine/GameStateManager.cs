@@ -44,6 +44,21 @@ namespace Engine
             }
         }
         /// <summary>
+        /// Gets the game state with the given name, if it exists.
+        /// </summary>
+        /// <param name="name">The name of the game state to find.</param>
+        /// <returns>The GameState with that name, or null if it could not be found.</returns>
+        public GameState GetGameState(string name)
+        {
+            GameState gameState = null;
+            if (gameStates.ContainsKey(name))
+            {
+
+                return gameStates[name];
+            }
+            return gameState;
+        }
+        /// <summary>
         /// Calls the HandleInput function for all the GameObjects in the currentlyActiveGameState
         /// </summary>
         /// <param name="inputHelper">A reference to the InputHelper to use</param>

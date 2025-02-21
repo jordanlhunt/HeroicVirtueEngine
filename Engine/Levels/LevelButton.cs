@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Engine.UI
@@ -46,7 +45,7 @@ namespace Engine.UI
         public LevelButton(int levelIndex, LevelStatus startStatus) : base(null, DEFAULT_LAYER_DEPTH)
         {
             LevelIndex = levelIndex;
-            levelStatus = startStatus;
+            Status = startStatus;
         }
         #endregion
         #region Public Methods
@@ -55,14 +54,16 @@ namespace Engine.UI
         {
             base.Draw(gameTime, spriteBatch);
             if (buttonLabel != null)
+            {
                 buttonLabel.Draw(gameTime, spriteBatch);
+            }
         }
         #endregion
 
         #region Private Methods
         protected virtual string getSpriteNameForLevelStatus(LevelStatus levelStatus)
         {
-            string spriteName;
+            string spriteName = "";
             if (levelStatus == LevelStatus.Locked)
             {
                 spriteName = "Sprites/UI/spr_level_locked";

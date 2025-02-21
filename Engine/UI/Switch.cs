@@ -41,6 +41,7 @@
         {
             Selected = false;
         }
+        #endregion
         #region Public Methods
 
         public override void HandleInput(InputHelper inputHelper)
