@@ -144,7 +144,7 @@ namespace Engine
         /// <param name="gameTime">An object containing information about the time has passed</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             // start drawing sprites, applying the scaling matrix
             spriteBatch.Begin(SpriteSortMode.FrontToBack, null, null, null, null, null, spriteScaleMatrix);
             // Draw the game world itself
@@ -178,13 +178,14 @@ namespace Engine
             graphics.IsFullScreen = isFullScreen;
             // Get the size of the screen to use: either the window or the full-screen size
             Point screenSize;
-            if (isFullScreen)
+            if (!isFullScreen)
             {
-                screenSize = new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+                screenSize = windowSize;
             }
             else
             {
-                screenSize = windowSize;
+                screenSize = new Point(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height);
+
             }
             // Scale the window to the desired size
             graphics.PreferredBackBufferWidth = screenSize.X;

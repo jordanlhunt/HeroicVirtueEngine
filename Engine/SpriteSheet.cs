@@ -15,12 +15,12 @@ namespace Engine
         bool[,] pixelTranparency;
         #endregion
         #region Constructor
-        public SpriteSheet(string spriteName, float layerDepth, int sheetIndex = 0)
+        public SpriteSheet(string assetName, float layerDepth, int sheetIndex = 0)
         {
             this.layerDepth = layerDepth;
 
             // retrieve the sprite
-            sprite = ExtendedGame.AssetManager.LoadSprite(spriteName);
+            sprite = ExtendedGame.AssetManager.LoadSprite(assetName);
             Color[] colorData = new Color[sprite.Width * sprite.Height];
             sprite.GetData(colorData);
             pixelTranparency = new bool[sprite.Width, sprite.Height];
@@ -30,6 +30,23 @@ namespace Engine
             }
             sheetColumns = 1;
             sheetRows = 1;
+
+            // See if we need to extract a number of sheet elements from the assetName
+            string[] assetSplit = assetName.Split('@');
+            if (assetSplit.Length >= 2)
+            {
+                // Behind the last '@' symbol, there will be a number.
+                // This number can be followed by an 'x' and then another number
+                string sheetNumberData = assetSplit[assetSplit.Length - 1];
+                string[] columnAndRow = sheetNumberData.Split('x');
+                sheetColumns = int.Parse(columnAndRow[0]);
+                if (columnAndRow.Length == 2)
+                {
+                    sheetRows = int.Parse(columnAndRow[1]);
+                }
+            }
+
+            SheetIndex = sheetIndex;
         }
         #endregion
         #region Properties
