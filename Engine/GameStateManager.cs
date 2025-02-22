@@ -54,7 +54,7 @@ namespace Engine
             if (gameStates.ContainsKey(name))
             {
 
-                return gameStates[name];
+                gameState = gameStates[name];
             }
             return gameState;
         }

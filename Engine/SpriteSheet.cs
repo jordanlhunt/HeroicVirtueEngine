@@ -12,7 +12,7 @@ namespace Engine
         int sheetColumns;
         int sheetRows;
         float layerDepth;
-        bool[,] pixelTranparency;
+        bool[,] pixelTransparency;
         #endregion
         #region Constructor
         public SpriteSheet(string assetName, float layerDepth, int sheetIndex = 0)
@@ -23,10 +23,10 @@ namespace Engine
             sprite = ExtendedGame.AssetManager.LoadSprite(assetName);
             Color[] colorData = new Color[sprite.Width * sprite.Height];
             sprite.GetData(colorData);
-            pixelTranparency = new bool[sprite.Width, sprite.Height];
+            pixelTransparency = new bool[sprite.Width, sprite.Height];
             for (int i = 0; i < colorData.Length; i++)
             {
-                pixelTranparency[i % sprite.Width, i / sprite.Width] = colorData[i].A == 0;
+                pixelTransparency[i % sprite.Width, i / sprite.Width] = colorData[i].A == 0;
             }
             sheetColumns = 1;
             sheetRows = 1;
@@ -45,7 +45,6 @@ namespace Engine
                     sheetRows = int.Parse(columnAndRow[1]);
                 }
             }
-
             SheetIndex = sheetIndex;
         }
         #endregion
@@ -87,7 +86,7 @@ namespace Engine
             }
         }
         /// <summary>
-        /// Get the width of a single spirte in the sprite sheet
+        /// Get the width of a single sprite in the sprite sheet
         /// </summary>
         public int Width
         {
@@ -154,7 +153,7 @@ namespace Engine
         {
             int column = sheetIndex % sheetColumns;
             int row = sheetIndex / sheetColumns % sheetRows;
-            return pixelTranparency[column * Width + x, row * Height + y];
+            return pixelTransparency[column * Width + x, row * Height + y];
         }
         #endregion
     }

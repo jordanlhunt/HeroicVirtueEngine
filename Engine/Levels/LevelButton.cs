@@ -61,14 +61,14 @@ namespace Engine.UI
         #endregion
 
         #region Private Methods
-        protected virtual string getSpriteNameForLevelStatus(LevelStatus levelStatus)
+        protected virtual string getSpriteNameForLevelStatus(LevelStatus status)
         {
             string spriteName = "";
-            if (levelStatus == LevelStatus.Locked)
+            if (status == LevelStatus.Locked)
             {
                 spriteName = "Sprites/UI/spr_level_locked";
             }
-            if (levelStatus == LevelStatus.Unlocked)
+            else if (status == LevelStatus.Unlocked)
             {
                 spriteName = "Sprites/UI/spr_level_unsolved";
             }

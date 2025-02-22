@@ -97,14 +97,9 @@ namespace Engine
         /// <param name="spriteBatch">A sprite batch object used for drawing Sprites</param>
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            if (IsVisible == false)
+            if (sprite != null && base.IsVisible)
             {
-                return;
-            }
-            // Draw the sprite at its GLOBAL Position in the game world
-            if (sprite != null)
-            {
-                sprite.Draw(spriteBatch, GlobalPosition, Origin);
+                sprite.Draw(spriteBatch, base.GlobalPosition, Origin);
             }
         }
         /// <summary>
