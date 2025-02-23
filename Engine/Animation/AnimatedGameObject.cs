@@ -39,7 +39,7 @@ namespace Engine
             base.Update(gameTime);
             if (sprite != null)
             {
-                ((Animation)sprite.Update(gameTime));
+                ((Animation)sprite).Update(gameTime);
             }
         }
         #endregion
