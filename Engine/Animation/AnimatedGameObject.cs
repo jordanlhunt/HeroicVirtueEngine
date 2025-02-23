@@ -1,4 +1,6 @@
-﻿namespace Engine
+﻿using Microsoft.Xna.Framework;
+
+namespace Engine
 {
     /// <summary>
     /// A class that can represent a game object with several animated sprites
@@ -30,6 +32,15 @@
                 sprite = animations[animationId];
             }
 
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            if (sprite != null)
+            {
+                ((Animation)sprite.Update(gameTime));
+            }
         }
         #endregion
     }
