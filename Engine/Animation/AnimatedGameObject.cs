@@ -24,12 +24,12 @@
         public void PlayAnimation(string animationId, bool isForceRestart = false, int startSheetIndex = 0)
         {
             // if the annimation is already playing don't do anything
-            if (!isForceRestart == false && sprite == animations[animationId])
+            if (isForceRestart || sprite != animations[animationId])
             {
-                return;
+                animations[animationId].Play(startSheetIndex);
+                sprite = animations[animationId];
             }
-            animations[animationId].Play(startSheetIndex);
-            sprite = animations[animationId];
+
         }
         #endregion
     }
