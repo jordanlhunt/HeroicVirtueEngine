@@ -10,7 +10,7 @@ namespace Engine
         #region Memeber Variables
         protected Vector2 localPosition;
         /// <summary>
-        /// The current veolocity of this game object in units per second
+        /// The current velocity of this game object in units per second
         /// </summary>
         protected Vector2 velocity;
         #endregion
@@ -37,7 +37,7 @@ namespace Engine
         }
         /// <summary>
         /// The parent of this object in the game object hierarchy
-        /// If the object has a parent, its poistion dpeends on its parents position 
+        /// If the object has a parent, its position depends on its parents position 
         /// </summary>
         public GameObject Parent
         {

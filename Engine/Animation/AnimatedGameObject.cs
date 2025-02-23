@@ -8,10 +8,10 @@ namespace Engine
     public class AnimatedGameObject : SpriteGameObject
     {
         #region Member Variables
-        Dictionary<string, Animation> animations;
+        private Dictionary<string, Animation> animations;
         #endregion
         #region Constructor 
-        public AnimatedGameObject(float depth) : base(null, depth)
+        public AnimatedGameObject(float layerDepth) : base(null, layerDepth)
         {
             animations = new Dictionary<string, Animation>();
         }
@@ -25,13 +25,12 @@ namespace Engine
         }
         public void PlayAnimation(string animationId, bool isForceRestart = false, int startSheetIndex = 0)
         {
-            // if the annimation is already playing don't do anything
+            // if the animation is already playing don't do anything
             if (isForceRestart || sprite != animations[animationId])
             {
                 animations[animationId].Play(startSheetIndex);
                 sprite = animations[animationId];
             }
-
         }
 
         public override void Update(GameTime gameTime)

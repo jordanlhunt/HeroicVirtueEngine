@@ -14,7 +14,7 @@ namespace Engine
         /// </summary>
         List<GameObject> children;
         #endregion
-        #region Consturctor
+        #region Constructor
         /// <summary>
         /// Creates a new GameObjectList with an empty list of children
         /// </summary>
@@ -67,8 +67,23 @@ namespace Engine
         public override void Reset()
         {
             foreach (GameObject gameObject in children)
+            {
                 gameObject.Reset();
+            }
         }
+
+        /// <summary>
+        /// Performs the Update method for all game objects in this GameObjectList.
+        /// </summary>
+        /// <param name="gameTime">An object containing information about the time that has passed in the game.</param>
+        public override void Update(GameTime gameTime)
+        {
+            foreach (GameObject gameObject in children)
+            {
+                gameObject.Update(gameTime);
+            }
+        }
+
         #endregion
     }
 }
