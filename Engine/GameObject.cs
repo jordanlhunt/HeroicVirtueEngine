@@ -7,7 +7,7 @@ namespace Engine
 {
     public class GameObject : IGameLoopObject
     {
-        #region Memeber Variables
+        #region Member Variables
         protected Vector2 localPosition;
         /// <summary>
         /// The current velocity of this game object in units per second
