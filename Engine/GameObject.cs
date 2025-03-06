@@ -94,7 +94,7 @@ namespace Engine
             LocalPosition += velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
         }
         /// <summary>
-        /// Draws this GameObject. By default, nothing happens but can be overriden
+        /// Draws this GameObject. By default, nothing happens but can be overridden
         /// </summary>
         /// <param name="gameTime">An object containing information about hte time that has passed</param>
         /// <param name="spriteBatch">The spriteBatch to use</param>
@@ -102,7 +102,7 @@ namespace Engine
         {
         }
         /// <summary>
-        /// Resets this game object to an inital state.
+        /// Resets this game object to an initial state.
         /// </summary>
         public virtual void Reset()
         {

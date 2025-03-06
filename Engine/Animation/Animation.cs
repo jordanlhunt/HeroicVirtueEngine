@@ -38,7 +38,7 @@ namespace Engine
             }
         }
         /// <summary>
-        /// Flag for if the anmation has finished playing
+        /// Flag for if the animation has finished playing
         /// </summary>
         public bool HasAnimationEnded
         {

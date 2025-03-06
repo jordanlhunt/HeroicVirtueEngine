@@ -91,7 +91,7 @@ namespace Engine
         #endregion
         #region Public Methods
         /// <summary>
-        /// Draws this SpriteGameObject on the screen, using its global position and origin. Will only be drawn if IsVisable is true
+        /// Draws this SpriteGameObject on the screen, using its global position and origin. Will only be drawn if IsVisible is true
         /// </summary>
         /// <param name="gameTime">An object containing information about the time that has passed in the game</param>
         /// <param name="spriteBatch">A sprite batch object used for drawing Sprites</param>
